@@ -12,6 +12,16 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class PlaneModel
 {
+    /*
+     * Adding personal methods / variables
+     */
+
+    /**
+     * @ORM\OneToMany(targetEntity="AppBundle\Entity\Flight", mappedBy="plane")
+     */
+    private $planes;
+
+
     /**
      * @var int
      *
@@ -186,5 +196,47 @@ class PlaneModel
     {
         return $this->isAvailable;
     }
-}
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->planes = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
+    /**
+     * Add plane.
+     *
+     * @param \AppBundle\Entity\Flight $plane
+     *
+     * @return PlaneModel
+     */
+    public function addPlane(\AppBundle\Entity\Flight $plane)
+    {
+        $this->planes[] = $plane;
+
+        return $this;
+    }
+
+    /**
+     * Remove plane.
+     *
+     * @param \AppBundle\Entity\Flight $plane
+     *
+     * @return boolean TRUE if this collection contained the specified element, FALSE otherwise.
+     */
+    public function removePlane(\AppBundle\Entity\Flight $plane)
+    {
+        return $this->planes->removeElement($plane);
+    }
+
+    /**
+     * Get planes.
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPlanes()
+    {
+        return $this->planes;
+    }
+}
