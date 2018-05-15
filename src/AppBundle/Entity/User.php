@@ -290,6 +290,7 @@ class User
     {
         $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pilots = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
