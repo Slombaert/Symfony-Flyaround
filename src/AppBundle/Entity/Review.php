@@ -19,7 +19,7 @@ class Review
     public function __toString()
     {
         // Return the Review object with "[id]" format when __toString is called
-        return $this->id;
+        return strval($this->id);
     }
 
 
