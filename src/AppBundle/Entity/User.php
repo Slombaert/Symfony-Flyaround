@@ -3,14 +3,17 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
+
 
 /**
  * User
  *
- * @ORM\Table(name="user")
+ * @ORM\Table(name="`user`")
  * @ORM\Entity(repositoryClass="AppBundle\Repository\UserRepository")
  */
-class User
+
+class User extends BaseUser
 {
 
     /*
@@ -54,7 +57,7 @@ class User
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
@@ -291,6 +294,8 @@ class User
         $this->reviewAuthors = new \Doctrine\Common\Collections\ArrayCollection();
         $this->pilots = new \Doctrine\Common\Collections\ArrayCollection();
         $this->passengers = new \Doctrine\Common\Collections\ArrayCollection();
+
+        parent::__construct();
     }
 
     /**
